@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 public class Login extends JFrame implements ActionListener {
     JButton reset, submit, close;
@@ -61,7 +62,26 @@ public class Login extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == submit){
             // Here you can add login validation later
-            JOptionPane.showMessageDialog(this, "Login button clicked!");
+            String username = tfusername.getText();
+            String password =  tfpassword.getText();
+
+            try{
+                DBConnection c = new DBConnection();
+                String query = "select * from login where username = '"+username+"' and password = '"+password+"'";
+                ResultSet rs = c.s.executeQuery(query);
+
+                if(rs.next()){
+                    System.out.println("Inside - valid");
+                    setVisible(false);
+                    dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Invalid Username or Password");
+                    setVisible(false);
+                    dispose();
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         } else if (ae.getSource() == close) {
             setVisible(false);
             dispose(); // better cleanup

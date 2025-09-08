@@ -2,10 +2,12 @@ package com.airlinemanagement;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener; // <-- added
 import java.io.File;
 import java.net.URL;
 
-public class Home extends JFrame {
+public class Home extends JFrame implements ActionListener { // <-- added implements ActionListener
 
     public Home() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -50,28 +52,30 @@ public class Home extends JFrame {
         JMenu details = new JMenu("Details");
         menuBar.add(details);
 
-        JMenuItem flightDetails = new JMenu("Flight Details");
+        JMenuItem flightDetails = new JMenuItem("Flight Details");
+        flightDetails.addActionListener(this);
         details.add(flightDetails);
 
-        JMenuItem customerDetails = new JMenu("Customer Details");
+        JMenuItem customerDetails = new JMenuItem("Customer Details");
+        customerDetails.addActionListener(this);
         details.add(customerDetails);
 
-        JMenuItem reservationDetails = new JMenu("Reservation Details");
+        JMenuItem reservationDetails = new JMenuItem("Reservation Details");
         details.add(reservationDetails);
 
-        JMenuItem bookFlight = new JMenu("Book Flight");
+        JMenuItem bookFlight = new JMenuItem("Book Flight");
         details.add(bookFlight);
 
-        JMenuItem journeyDetails = new JMenu("Journey Details");
+        JMenuItem journeyDetails = new JMenuItem("Journey Details");
         details.add(journeyDetails);
 
-        JMenuItem ticketCancellation = new JMenu("Ticket Cancellation");
+        JMenuItem ticketCancellation = new JMenuItem("Ticket Cancellation");
         details.add(ticketCancellation);
 
         JMenu ticket = new JMenu("Ticket");
         menuBar.add(ticket);
 
-        JMenuItem boardingPass = new JMenu("Boarding Pass");
+        JMenuItem boardingPass = new JMenuItem("Boarding Pass");
         ticket.add(boardingPass);
 
         // Frame setup
@@ -79,6 +83,17 @@ public class Home extends JFrame {
         setSize(screen);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae){
+        String text = ae.getActionCommand();
+
+        if ("Customer Details".equals(text)) {
+            new AddCustomer();
+        } else if ("Flight Details".equals(text)) {
+            new FlightInfo();
+        }
     }
 
     public static void main(String[] args) {

@@ -28,5 +28,3 @@ A compact Java-based flight reservation system that demonstrates core functional
 This project is intended as an educational, demonstrative application to showcase typical operations found in small-scale reservation systems: user sessions, CRUD for customers and bookings, persistence via a DB connection, and simple business flows like booking and cancellation.
 
 ---
-
-*Prepared as a concise overview for repository README.*

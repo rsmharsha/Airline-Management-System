@@ -70,12 +70,14 @@ public class Home extends JFrame implements ActionListener { // <-- added implem
         details.add(journeyDetails);
 
         JMenuItem ticketCancellation = new JMenuItem("Ticket Cancellation");
+        ticketCancellation.addActionListener(this);
         details.add(ticketCancellation);
 
         JMenu ticket = new JMenu("Ticket");
         menuBar.add(ticket);
 
         JMenuItem boardingPass = new JMenuItem("Boarding Pass");
+        boardingPass.addActionListener(this);
         ticket.add(boardingPass);
 
         // Frame setup
@@ -97,6 +99,10 @@ public class Home extends JFrame implements ActionListener { // <-- added implem
             new BookFlight();
         } else if ("Journey Details".equals(text)) {
             new JourneyDetails();
+        } else if ("Ticket Cancellation".equals(text)) {
+            new Cancel();
+        } else if ("Boarding Pass".equals(text)) {
+            new BoardingPass();
         }
     }
 

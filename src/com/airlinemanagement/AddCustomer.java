@@ -12,7 +12,7 @@ public class AddCustomer extends JFrame implements ActionListener {
 
     public AddCustomer() {
         setTitle("Airline Management - Add Customer");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         final int FRAME_W = 900;
         final int FRAME_H = 600;
